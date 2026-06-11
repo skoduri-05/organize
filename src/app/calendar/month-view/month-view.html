@@ -1,0 +1,29 @@
+<div class = "calendar-container">
+    <div class = "calendar-header">
+        <button class="icon-button" (click) = "previousMonth()">
+            <img src="assets/icons/left.png" alt="Previous month">
+        </button>
+        <h2>{{ displayMonth + 1 }}/{{ displayYear }}</h2>
+        <button class="icon-button" (click) = "nextMonth()">
+            <img src="assets/icons/right.png" alt="Next month">
+        </button>
+    </div>
+    <div class = "calendar-grid">
+    @for (dayName of weekDays; track dayName) {
+      <div class="weekday">
+        {{ dayName }}
+      </div>
+    }
+
+    @for (day of calendarDays; track day.dateString) {
+      <button
+        class="day-cell"
+        [class.outside-month]="!day.isCurrentMonth"
+        [class.today]="day.isToday"
+      >
+        <span class="day-number">{{ day.dayOfMonth }}</span>
+      </button>
+    }
+
+    </div>
+</div>
